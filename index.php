@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="table-responsive table-bordered">
-    <form method="POST" action="">   
+    <form method="POST" action="core/insert.php">   
     <table class="table table-bordered">
             <thead>
                 <tr>
@@ -43,7 +43,7 @@
                 <tr>
                     <td><?php echo $mostrar['Nombre'] ?></td>
                     <td><?php echo $mostrar['Semestre'] ?></td>
-                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox" name="chkl[ ]" value=<?php echo $mostrar['Nombre'] ?>>  </td>
                 </tr>
             </tbody>
             <?php
@@ -51,9 +51,10 @@
             ?>
         </table>
         <center> 
-     <button type='submit' class="btn btn-primary">Agregar</button>
+     <button type='submit' class="btn btn-primary" name="sub">Agregar</button>
         </center>
     </form>
+)
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

@@ -10,7 +10,6 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -24,9 +23,10 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `accessos_rol`
---
+SET time_zone = "-05:00";
+drop database if exists desarrollatec;
+create database desarrollatec;
+use desarrollatec;
 
 CREATE TABLE `accessos_rol` (
   `Modulo_URL` int(11) NOT NULL,
@@ -256,7 +256,3 @@ ALTER TABLE `cat_materias`
 ALTER TABLE `cat_usuarios`
   ADD CONSTRAINT `fk_CAT_USUARIOS_CAT_USUARIOS_ROL` FOREIGN KEY (`Cve_Rol`) REFERENCES `cat_usuarios_rol` (`Cve_Rol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
