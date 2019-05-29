@@ -1,12 +1,32 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-05-2019 a las 21:07:36
+-- Versión del servidor: 10.1.40-MariaDB
+-- Versión de PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "-05:00";
-drop database if exists desarrollatec;
-create database desarrollatec;
-use desarrollatec;
+SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `desarrollatec`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `accessos_rol`
+--
 
 CREATE TABLE `accessos_rol` (
   `Modulo_URL` int(11) NOT NULL,
@@ -34,6 +54,27 @@ CREATE TABLE `cat_alumnos` (
 INSERT INTO `cat_alumnos` (`Cve_Alumnos`, `Nombre`, `Apellido`, `Matricula`, `Cve_Semestre`) VALUES
 (1, 'Juan', 'Requena', '15300963', 1),
 (2, 'Cristo', 'Lopez', '15300986', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cat_alumnos_has_materia`
+--
+
+CREATE TABLE `cat_alumnos_has_materia` (
+  `Cve_Alumno` int(11) NOT NULL,
+  `Cve_Materia` int(11) NOT NULL,
+  `Cve_Semestre` int(11) NOT NULL,
+  `Calificacion` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cat_alumnos_has_materia`
+--
+
+INSERT INTO `cat_alumnos_has_materia` (`Cve_Alumno`, `Cve_Materia`, `Cve_Semestre`, `Calificacion`) VALUES
+(1, 11, 1, '6'),
+(1, 1, 1, '7');
 
 -- --------------------------------------------------------
 
@@ -129,6 +170,14 @@ ALTER TABLE `cat_alumnos`
   ADD KEY `fk_CAT_ALUMNOS_CAT_SEMESTRE1_idx` (`Cve_Semestre`);
 
 --
+-- Indices de la tabla `cat_alumnos_has_materia`
+--
+ALTER TABLE `cat_alumnos_has_materia`
+  ADD KEY `fk_CAT_ALUMNOS_HAS_MATERIA` (`Cve_Alumno`),
+  ADD KEY `fk_CAT_ALUMNOS_CAT_MATERIA` (`Cve_Materia`),
+  ADD KEY `fk_CAT_ALUMNOS_HAS_SEMESTRE` (`Cve_Semestre`);
+
+--
 -- Indices de la tabla `cat_materias`
 --
 ALTER TABLE `cat_materias`
@@ -188,6 +237,14 @@ ALTER TABLE `cat_alumnos`
   ADD CONSTRAINT `fk_CAT_ALUMNOS_CAT_SEMESTRE1` FOREIGN KEY (`Cve_Semestre`) REFERENCES `cat_semestre` (`Cve_Semestre`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `cat_alumnos_has_materia`
+--
+ALTER TABLE `cat_alumnos_has_materia`
+  ADD CONSTRAINT `fk_CAT_ALUMNOS_CAT_MATERIA` FOREIGN KEY (`Cve_Materia`) REFERENCES `cat_materias` (`Cve_Materia`),
+  ADD CONSTRAINT `fk_CAT_ALUMNOS_HAS_MATERIA` FOREIGN KEY (`Cve_Alumno`) REFERENCES `cat_alumnos` (`Cve_Alumnos`),
+  ADD CONSTRAINT `fk_CAT_ALUMNOS_HAS_SEMESTRE` FOREIGN KEY (`Cve_Semestre`) REFERENCES `cat_semestre` (`Cve_Semestre`);
+
+--
 -- Filtros para la tabla `cat_materias`
 --
 ALTER TABLE `cat_materias`
@@ -199,3 +256,7 @@ ALTER TABLE `cat_materias`
 ALTER TABLE `cat_usuarios`
   ADD CONSTRAINT `fk_CAT_USUARIOS_CAT_USUARIOS_ROL` FOREIGN KEY (`Cve_Rol`) REFERENCES `cat_usuarios_rol` (`Cve_Rol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
