@@ -31,7 +31,7 @@
                     <th>Materias</th>
                     <th>Nombre</th>
                     <th>Calificacion </th>
-                    <th>Agregar</th>
+                    
                 </tr>
             </thead>
             <?php
@@ -44,16 +44,13 @@
                     <td><?php echo $mostrar['nombre_alumno'] ?></td>
                     <td><?php echo $mostrar['Nombre'] ?></td>
                     <td><?php echo $mostrar['Calificacion'] ?></td>
-                    <td><input type="checkbox"></td>
+                
                 </tr>
             </tbody>
             <?php
             }
             ?>
         </table>
-        <center> 
-     <button type='submit' class="btn btn-primary">Agregar</button>
-        </center>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
